@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>MAIN QUESTIONS</h1>
+<hr>
+<p>Score</p>
+<hr>
+<p>Question Number</p>
+<hr>
+<p>Session Limit</p>
+<hr>
+<p>Question</p>
+<p>{{ object.problem|linebreaks }}</p>
+<ol type='A'>
+	<li>
+      <span>
+		<input name="option" type="radio" value="A" >{{object.option_a|linebreaks}}
+	  </span>
+    </li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="B" >{{object.option_b|linebreaks}}
+	  </span>
+	</li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="C" >{{object.option_c|linebreaks}}
+	  </span>
+	</li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="D" >{{object.option_d|linebreaks}}
+	  </span>
+	</li>
+</ol>
+<hr>
+<p><a href="{% url 'questions' %}">Prev</a></p>
+<p><a href="{% url 'questions' %}">Next</a></p>
+<p><a href="{% url 'loggedout' %}">Submit</a></p>
+<hr>
+{% endblock %}
