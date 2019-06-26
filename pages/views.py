@@ -5,16 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 import pyrebase
+from fireconfig import config
 
-
-config = {
-    "apiKey": "AIzaSyAv3WKpqtfLh5j_NOld0L4FVrnitlURb0c",
-    "authDomain": "open-link-on-pc.firebaseapp.com",
-    "databaseURL": "https://open-link-on-pc.firebaseio.com",
-    "projectId": "open-link-on-pc",
-    "storageBucket": "open-link-on-pc.appspot.com",
-    "messagingSenderId": "373872131753"
-}
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
