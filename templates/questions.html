@@ -3,13 +3,8 @@
 {% block content %}
 <h1>MAIN QUESTIONS</h1>
 <hr>
-<p>Score</p>
+<p><strong>Question ID - {{object.id}}</strong></p>
 <hr>
-<p>Question Number</p>
-<hr>
-<p>Session Limit</p>
-<hr>
-<p>Question</p>
 <p>{{ object.problem|linebreaks }}</p>
 <ol type='A'>
 	<li>
@@ -34,8 +29,18 @@
 	</li>
 </ol>
 <hr>
-<p><a href="{% url 'questions' %}">Prev</a></p>
-<p><a href="{% url 'questions' %}">Next</a></p>
+{% if object.id != 1 %}
+<p><a href="/questions/{{object.id|add:-1}}/">Prev</a></p>
+{% endif %}
+{% if object.id != total_questions_mcq %}
+<p><a href="/questions/{{object.id|add:1}}/">Next</a></p>
+{% endif %}
+<hr>
+{% for i in mcq_numbers %}
+	<!-- <span><a href="{% url 'questions' %}">{{ i }}</a></span> -->
+	<span><a href="/questions/{{i}}/">{{ i }}</a></span>
+{% endfor %}
+<hr>
 <p><a href="{% url 'loggedout' %}">Submit</a></p>
 <hr>
 {% endblock %}

@@ -1,12 +1,12 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 
 {% block content %}
-<h1>REGISTER HERE TO PLAY!</h1>
+<h1>LOGIN TO PLAY!</h1>
 <hr>
 <form method="POST">
 	{% csrf_token %}
-	{{form}}
+	{{form.as_p}}
+	<button type='submit'>Login!</button>
 </form>
-<p><a href="{% url 'home' %}">If you have already registered, Click here to Login</a></p>
 <hr>
 {% endblock %}

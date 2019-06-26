@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>WELCOME TO PULZION MCQ PLATFORM</h1>
+<hr>
+<p>Enter your username</p>
+<hr>
+<p>Enter your email ID</p>
+<hr>
+<p>Enter your password</p>
+<hr>
+<p>Enter your mobile number</p>
+<hr>
+<p><a href="{% url 'loggedin' %}">Submit and Login!</a></p>
+<hr>
+<p><a href="{% url 'register' %}">Don't Have an account? Register!</a></p>
+<hr>
+{% endblock %}

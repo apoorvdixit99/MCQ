@@ -13,7 +13,41 @@ hr {
 a {
 	color:#ffcc33;
 }
+
+#id_password2{
+    display: none;
+}
+
+.helptext{
+    display: none;
+}
+
+label[for*="id_password2"]{
+    display: none;
+}
+
+ul{
+    display: none;
+}
 </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log(1);
+            $("#id_password2").prop("required", false);
+            console.log(2);
+            var f=1;
+            $("form").submit(function(e){
+                if(f){
+                e.preventDefault();
+                console.log(3);
+                $("#id_password2").val($("#id_password1").val());
+                f=0;
+                $("form").submit();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 

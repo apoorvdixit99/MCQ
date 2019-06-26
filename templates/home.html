@@ -3,14 +3,12 @@
 {% block content %}
 <h1>WELCOME TO PULZION MCQ PLATFORM</h1>
 <hr>
-<p>Enter your username</p>
-<hr>
-<p>Enter your email ID</p>
-<hr>
-<p>Enter your password</p>
-<hr>
-<p>Enter your mobile number</p>
-<hr>
-<p><a href="{% url 'loggedin' %}">Submit and Login!</a></p>
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button type='submit'>Login!</button>
+</form>
+
+<p><a href="{% url 'register' %}">If you have not registered, Click here to Register</a></p>
 <hr>
 {% endblock %}
