@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 import pyrebase
 from fireconfig import config
+import json
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
@@ -33,7 +34,9 @@ def questions_view(request, id_number=-1):	#if random function is used in url it
 	}
 	return render(request,"questions.html",context);
 	
-def loggedout_view(request,*args, **kwargs):
+def loggedout_view(request):
+	ansdict = json.loads(str(request.POST['answers']))  # This dictionary has answers of user
+	print("Ans dict is " + str(ansdict)) # remove this later
 	return render(request, "loggedout.html", {})
 
 def register_view(request):
