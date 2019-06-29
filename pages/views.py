@@ -4,73 +4,67 @@ from questions.models import Question
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-import pyrebase
-from fireconfig import config
-import json
-
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
+import _random
 
 
-total_questions_mcq = 4
-total_questions_db = 4
-
+total_questions_mcq = 50
+total_questions_db = Question.objects.count()
 # Create your views here.
+question = []
+
 def home_view(request,*args, **kwargs):
 	return render(request, "home.html", {})
 	
 def loggedin_view(request,*args, **kwargs):
-	return render(request, "loggedin.html", {})
+	global question
+	if len(question)==0:
+		question.append(total_questions_mcq)
+		for i in range(1, total_questions_mcq+1,1):
+			question.append(random.randrange(1, total_questions_db+1, 1))
+	print(len(question))
 
-def questions_view(request, id_number=-1):	#if random function is used in url it always return 2
-	if id_number == -1:
-		id_number=random.randrange(1,total_questions_db+1,1)
-	obj = Question.objects.get(id=id_number)
+	return render(request, "loggedin.html", {'first': question[1]})
+
+def questions_view(request, index=-1):	#if random function is used in url it always return 2
+	global question
+	print(question)
+	if index == -1:
+		index=random.randrange(1,total_questions_db+1,1)
+	obj = Question.objects.get(id=question[index])
+	id_array2 = []
+	for i in range(1,total_questions_mcq+1,1):
+		id_array2.append(i)
 	context = {
-		'mcq_numbers' : [1,2,3,4],		#CHANGE THIS TO SIMPLE RANGE IN ACTUAL HTML FILE
 		'object' : obj,
 		'total_questions_mcq' : total_questions_mcq,
-		'total_questions_db' : total_questions_db
+		'total_questions_db' : total_questions_db,
+		'id_array': question,
+		'id_array2': id_array2,
+		'index':index
 	}
+
 	return render(request,"questions.html",context);
 	
-def loggedout_view(request):
-	ansdict = json.loads(str(request.POST['answers']))  # This dictionary has answers of user
-	print("Ans dict is " + str(ansdict)) # remove this later
+def loggedout_view(request,*args, **kwargs):
 	return render(request, "loggedout.html", {})
 
 def register_view(request):
 	if request.method == "POST":
 		form = UserCreationForm(request.POST)
-
 		if form.is_valid():
+			user = form.save()
 			username = form.cleaned_data.get('username')
-			pwd = form.cleaned_data.get('password1')
-			dbauth = db.child("mcq").child("qtob").get().val()
-			f=0
-
-			for x in dbauth:
-
-				if dbauth[x]['email'] == username and dbauth[x]['pwd'] == pwd:
-					f=1
-
-			if f==1:
-				print ("Firebase Successful")
-				user = form.save()
-				login(request, user)
-				messages.info(request, f"You are now logged in as: {username}")
-				return redirect("loggedin")
-			else:
-				messages.error(request, "Invalid username or password")
-				print ("Invalid username or password")
+			messages.success(request, f"New Account Created: {username}")
+			login(request,user)
+			messages.info(request, f"You are now logged in as: {username}")
+			return redirect("loggedin")
 		else:
-			print ("Invalid form")
 			for msg in form.error_messages:
 				messages.error(request, f"{msg}: {form.error_messages[msg]}")
 				#print(form.error_messages[msg])
 	form = UserCreationForm
 	context = {
-		"form": form
+		"form":form
 	}
 	return render(request, "register.html", context)
 

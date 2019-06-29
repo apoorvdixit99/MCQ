@@ -1,100 +1,78 @@
 {% extends "base.html" %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-
-    var qid = {{object.id}};
-
-	function setCookie(ckey,cvalue,time) {
-  var d = new Date();
-  d.setTime(d.getTime() + (time*60*1000));
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = ckey + ":" + cvalue + "," + expires + ";path=/";
-}
-
-	function savecook(opt)
-	{
-        setCookie(qid,opt.value, 30);
-	}
-
-    function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-    function sub()
-    {
-        var obj = {};
-        var cookie = document.cookie.split(";");
-        for (x in cookie){
-            if(x>0)
-            {
-                obj[cookie[x].split(":")[0].charAt(1)] = cookie[x].split(":")[1].split(",")[0];
-            }
-
-        }
-        document.getElementById("inpans").value = JSON.stringify(obj);
-        return true;
-    }
-
-</script>
 <h1>MAIN QUESTIONS</h1>
+<hr>
+<p><strong>Question Index - {{index}}</strong></p>
 <hr>
 <p><strong>Question ID - {{object.id}}</strong></p>
 <hr>
 <p>{{ object.problem|linebreaks }}</p>
+
 <ol type='A'>
-    <li>
+	<li>
       <span>
-		<input name="option" type="radio" value="A" onclick="savecook(this)">{{object.option_a|linebreaks}}
+		<input name="option" type="radio" value="A" onclick="sendResponse(this.value)" >{{object.option_a|linebreaks}}
 	  </span>
     </li>
-    <li>
+	<li>
       <span>
-		<input name="option" type="radio" value="B" onclick="savecook(this)">{{object.option_b|linebreaks}}
+		<input name="option" type="radio" value="B" onclick="sendResponse(this.value)">{{object.option_b|linebreaks}}
 	  </span>
-    </li>
-    <li>
+	</li>
+	<li>
       <span>
-		<input name="option" type="radio" value="C" onclick="savecook(this)">{{object.option_c|linebreaks}}
+		<input name="option" type="radio" value="C" onclick="sendResponse(this.value)" >{{object.option_c|linebreaks}}
 	  </span>
-    </li>
-    <li>
+	</li>
+	<li>
       <span>
-		<input name="option" type="radio" value="D" onclick="savecook(this)">{{object.option_d|linebreaks}}
+		<input name="option" type="radio" value="D" onclick="sendResponse(this.value)" >{{object.option_d|linebreaks}}
 	  </span>
-    </li>
+	</li>
 </ol>
 <hr>
-{% if object.id != 1 %}
-<p><a href="/questions/{{object.id|add:-1}}/">Prev</a></p>
+{% if index != 1 %}
+<p><a href="/questions/{{index|add:-1}}/">Prev</a></p>
 {% endif %}
-{% if object.id != total_questions_mcq %}
-<p><a href="/questions/{{object.id|add:1}}/">Next</a></p>
+{% if index != total_questions_mcq %}
+<p><a href="/questions/{{index|add:1}}/">Next</a></p>
 {% endif %}
 <hr>
-{% for i in mcq_numbers %}
-<!-- <span><a href="{% url 'questions' %}">{{ i }}</a></span> -->
-<span><a href="/questions/{{i}}/">{{ i }}</a></span>
+{% for id in id_array2 %}
+	<span><a href="/questions/{{id}}/">{{ id }}</a></span>
 {% endfor %}
 <hr>
-<p><form name="frmsubmit" onsubmit="return sub()" action="{% url 'loggedout' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" id="inpans" name="answers" value="">
-    <button type="submit">Submit</button>
-</form>
-
+<p><a href="{% url 'loggedout' %}">Submit</a></p>
 <hr>
+
+<script type="text/javascript">
+    function sendResponse(ans) {
+        var object = {{ object.id }}
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "/submit_data/",
+
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                'object': object,
+                'ans': ans
+
+            },
+            success: function (score) {
+                console.log(score)
+
+
+            }
+
+        });
+
+
+    }
+</script>
+
 {% endblock %}
