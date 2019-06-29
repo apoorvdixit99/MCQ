@@ -1,15 +1,26 @@
+import firebase_admin
 from django.shortcuts import render, redirect
-import random 
+import random
+
+from firebase_admin import credentials, firestore
+
 from questions.models import Question
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 import pyrebase
 from fireconfig import config
+import firebase_admin as firebase
 import json
 
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
+#firebase = pyrebase.initialize_app(config)
+#db = firebase.database()
+
+cred = credentials.Certificate('./firekey.json')
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+
 
 
 total_questions_mcq = 4
@@ -46,16 +57,17 @@ def register_view(request):
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
 			pwd = form.cleaned_data.get('password1')
-			dbauth = db.child("mcq").child("qtob").get().val()
+			query = db.collection("cerebro").where('email', '==', username).get()
 			f=0
 
-			for x in dbauth:
+			for x in query:
 
-				if dbauth[x]['email'] == username and dbauth[x]['pwd'] == pwd:
+				data = x.to_dict()
+				if data['email'] == username and data['ticketno'] == pwd:
 					f=1
 
 			if f==1:
-				print ("Firebase Successful")
+				print ("Firestore Successful")
 				user = form.save()
 				login(request, user)
 				messages.info(request, f"You are now logged in as: {username}")
