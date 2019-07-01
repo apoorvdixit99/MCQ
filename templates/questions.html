@@ -6,17 +6,18 @@
 
     var qid = {{object.id}};
 
-	function setCookie(ckey,cvalue,time) {
-  var d = new Date();
+
+    function setCookie(ckey,cvalue,time) {
+    var d = new Date();
   d.setTime(d.getTime() + (time*60*1000));
   var expires = "expires=" + d.toGMTString();
-  document.cookie = ckey + ":" + cvalue + "," + expires + ";path=/";
+  document.cookie = ckey + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-	function savecook(opt)
-	{
+    function savecook(opt)
+    {
         setCookie(qid,opt.value, 30);
-	}
+    }
 
     function getCookie(cname) {
   var name = cname + "=";
@@ -56,61 +57,73 @@
         for (x in cookie){
             if(x>0)
             {
-                obj[cookie[x].split(":")[0].charAt(1)] = cookie[x].split(":")[1].split(",")[0];
+                obj[cookie[x].split(":")[0].split(" ")[1].split("=")[0]] = cookie[x].split("=")[1];
+                console.log(cookie[x].split("=")[1].split(";")[1]);
             }
 
         }
         document.getElementById("inpans").value = JSON.stringify(obj);
+        console.log("\n\n" + JSON.stringify(obj));
         deleteAllCookies();
+
         return true;
     }
 
 </script>
 <h1>MAIN QUESTIONS</h1>
 <hr>
+<p><strong>Question Index - {{index}}</strong></p>
+<hr>
 <p><strong>Question ID - {{object.id}}</strong></p>
 <hr>
 <p>{{ object.problem|linebreaks }}</p>
+
 <ol type='A'>
-    <li>
+	<li>
       <span>
-		<input name="option" type="radio" value="A" onclick="savecook(this)">{{object.option_a|linebreaks}}
+		<input name="option" type="radio" onclick="savecook(this)" value="A" >{{object.option_a|linebreaks}}
 	  </span>
     </li>
-    <li>
+	<li>
       <span>
-		<input name="option" type="radio" value="B" onclick="savecook(this)">{{object.option_b|linebreaks}}
+		<input name="option" type="radio" onclick="savecook(this)" value="B">{{object.option_b|linebreaks}}
 	  </span>
-    </li>
-    <li>
+	</li>
+	<li>
       <span>
-		<input name="option" type="radio" value="C" onclick="savecook(this)">{{object.option_c|linebreaks}}
+		<input name="option" type="radio" onclick="savecook(this)" value="C"  >{{object.option_c|linebreaks}}
 	  </span>
-    </li>
-    <li>
+	</li>
+	<li>
       <span>
-		<input name="option" type="radio" value="D" onclick="savecook(this)">{{object.option_d|linebreaks}}
+		<input name="option" type="radio" onclick="savecook(this)" value="D"  >{{object.option_d|linebreaks}}
 	  </span>
-    </li>
+	</li>
 </ol>
 <hr>
-{% if object.id != 1 %}
-<p><a href="/questions/{{object.id|add:-1}}/">Prev</a></p>
+{% if index != 1 %}
+<p><a href="/questions/{{index|add:-1}}/">Prev</a></p>
 {% endif %}
-{% if object.id != total_questions_mcq %}
-<p><a href="/questions/{{object.id|add:1}}/">Next</a></p>
+{% if index != total_questions_mcq %}
+<p><a href="/questions/{{index|add:1}}/">Next</a></p>
 {% endif %}
 <hr>
-{% for i in mcq_numbers %}
-<!-- <span><a href="{% url 'questions' %}">{{ i }}</a></span> -->
-<span><a href="/questions/{{i}}/">{{ i }}</a></span>
+<!--
+{% for id in id_array2 %}
+	<span><a href="/questions/{{id}}/">{{ id }}</a></span>
+{% endfor %}-->
+{% for i in i|rjust:total_questions_mcq %}
+	<span><a href="/questions/{{forloop.counter}}/">{{ forloop.counter }}</a></span>
 {% endfor %}
 <hr>
-<p><form name="frmsubmit" onsubmit="return sub()" action="{% url 'loggedout' %}" method="post">
+<!-- <p><a href="{% url 'loggedout' %}">Submit</a></p>
+ --><hr>
+
+<form name="frmsubmit" onsubmit="return sub()" action="{% url 'submit_data' %}" method="post">
     {% csrf_token %}
     <input type="hidden" id="inpans" name="answers" value="">
     <button type="submit">Submit</button>
 </form>
 
-<hr>
+
 {% endblock %}

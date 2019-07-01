@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>MAIN QUESTIONS</h1>
+<hr>
+<p><strong>Question Index - {{index}}</strong></p>
+<hr>
+<p><strong>Question ID - {{object.id}}</strong></p>
+<hr>
+<p>{{ object.problem|linebreaks }}</p>
+
+<ol type='A'>
+	<li>
+      <span>
+		<input name="option" type="radio" value="A" onclick="sendResponse(this.value)" >{{object.option_a|linebreaks}}
+	  </span>
+    </li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="B" onclick="sendResponse(this.value)">{{object.option_b|linebreaks}}
+	  </span>
+	</li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="C" onclick="sendResponse(this.value)" >{{object.option_c|linebreaks}}
+	  </span>
+	</li>
+	<li>
+      <span>
+		<input name="option" type="radio" value="D" onclick="sendResponse(this.value)" >{{object.option_d|linebreaks}}
+	  </span>
+	</li>
+</ol>
+<hr>
+{% if index != 1 %}
+<p><a href="/questions/{{index|add:-1}}/">Prev</a></p>
+{% endif %}
+{% if index != total_questions_mcq %}
+<p><a href="/questions/{{index|add:1}}/">Next</a></p>
+{% endif %}
+<hr>
+<!--
+{% for id in id_array2 %}
+	<span><a href="/questions/{{id}}/">{{ id }}</a></span>
+{% endfor %}-->
+{% for i in i|rjust:50 %}
+	<span><a href="/questions/{{forloop.counter}}/">{{ forloop.counter }}</a></span>
+{% endfor %}
+<hr>
+<p><a href="{% url 'loggedout' %}">Submit</a></p>
+<hr>
+
+<script type="text/javascript">
+    function sendResponse(ans) {
+        var object = {{ object.id }}
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "/submit_data/",
+
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                'object': object,
+                'ans': ans
+
+            },
+            success: function (score) {
+                console.log(score)
+
+
+            }
+
+        });
+
+
+    }
+</script>
+
+{% endblock %}

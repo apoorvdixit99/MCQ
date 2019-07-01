@@ -14,10 +14,6 @@ a {
 	color:#ffcc33;
 }
 </style>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
 </head>
 <body>
 
@@ -44,6 +40,20 @@ a {
 {% block content %}
 <p>Replace me hehe</p>
 {% endblock %}
+
+<form action="">
+  <input type="radio" name="gender" value="male" id="1" onclick="sendResponse(this.value)"> Male<br>
+  <input type="radio" name="gender" value="female" id="2" onclick="sendResponse(this.value)"> Female<br>
+  <input type="radio" name="gender" value="other" id="3" onclick="sendResponse(this.value)"> Other
+</form>
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+
+
 
 </body>
 </html>
