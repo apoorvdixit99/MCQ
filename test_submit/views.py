@@ -22,8 +22,7 @@ def submit_data(request):
     for i in ansdict:
         if Question.objects.get(id=i).correct_option.upper() == ansdict[i]:
             request.session['score'] += marksCorrect
-        else:
-            request.session['score'] -= marksIncorrect
+        
 
     db.collection("cerebro").document(request.session['userid']).update({'score': request.session['score']})
     print(request.session['score'])
