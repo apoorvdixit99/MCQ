@@ -20,7 +20,7 @@ from test_submit.views import submit_data
 
 urlpatterns = [
     path('admin/', 						admin.site.urls),
-   	path('',							views.login_request,			name='home'), 
+
     path('home/',          views.login_request,   name='home'),   
    	#ath('home/',						home_view,			name='home'),
     #path('login/',          login_request,   name='login'),
@@ -29,6 +29,6 @@ urlpatterns = [
     path('questions/',          views.questions_view,   name='questions'),
     path('logout/',          views.logout_request,   name='logout'),
    	path('loggedout/',					views.loggedout_view,		name='loggedout'),
-    path('register/',          views.register_view,   name='register'),
+    path('',          views.register_view,   name='register'),
     path('submit_data/', submit_data, name="submit_data")
 ]

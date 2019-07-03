@@ -5,11 +5,12 @@ from questions.models import Question
 import json
 import firebase_admin as firebase
 from firebase_admin import credentials, firestore
+from config import *
 
 cred = credentials.Certificate('./firekey.json')
 db = firestore.client()
 
-score = 0
+
 
 
 # Create your views here.
@@ -17,10 +18,13 @@ score = 0
 def submit_data(request):
     ansdict = json.loads(str(request.POST['answers']))
     print(str(ansdict))
-    global score
+
     for i in ansdict:
         if Question.objects.get(id=i).correct_option.upper() == ansdict[i]:
-            score += 1
-    db.collection("cerebro").document(request.session['userid']).update({'score': score})
-    print(score)
-    return HttpResponse("Your Score is " + str(score))
+            request.session['score'] += marksCorrect
+        else:
+            request.session['score'] -= marksIncorrect
+
+    db.collection("cerebro").document(request.session['userid']).update({'score': request.session['score']})
+    print(request.session['score'])
+    return HttpResponse("Your Score is " + str(request.session['score']))

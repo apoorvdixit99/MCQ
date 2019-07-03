@@ -25,7 +25,9 @@ SECRET_KEY = '2_n@t#ajlqye7kd_woew5pz1&hz5v8bzm55$=@0#_a=4z4w#m('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.102'
+]
 
 
 # Application definition
@@ -78,9 +80,13 @@ WSGI_APPLICATION = 'mcq.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mcq_pasc',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

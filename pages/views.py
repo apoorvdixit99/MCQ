@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-import _random
+from config import *
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -14,7 +14,7 @@ cred = credentials.Certificate('./firekey.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-total_questions_mcq = 50
+total_questions_mcq = totalQuestions
 total_questions_db = Question.objects.count()
 # Create your views here.
 question = []
@@ -31,21 +31,23 @@ def loggedin_view(request, *args, **kwargs):
         for i in range(1, total_questions_mcq + 1, 1):
             question.append(random.randrange(205, total_questions_db + 1, 1))
     print(len(question))
+    request.session['questions'] = question
+    request.session['score'] = 0
 
     return render(request, "loggedin.html", {'first': question[1]})
 
 
 def questions_view(request, index=-1):  # if random function is used in url it always return 2
-    global question
-    print(question)
+
     if index == -1:
         index = random.randrange(1, total_questions_db + 1, 1)
-    obj = Question.objects.get(id=question[index])
+    obj = Question.objects.get(id=request.session['questions'][index])
     context = {
+        'event': eventName,
         'object': obj,
         'total_questions_mcq': total_questions_mcq,
         'total_questions_db': total_questions_db,
-        'id_array': question,
+        'id_array': request.session['questions'],
         'index': index
     }
 
