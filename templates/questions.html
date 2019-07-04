@@ -36,35 +36,24 @@
 }
 
 
-    function deleteAllCookies()
-    {
-        var d = new Date();
-        d.setTime(d.getTime()-15*60*1000);
-        document.cookie.split(";").forEach(function(c)
-        {
-            console.log(c);
-            if(c.split("=")[0] !== "csrftoken")
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + d.toGMTString() + ";path=/");
-            else
-                console.log("CSRF token cookie not deleted!");
-        });
-    }
+    
 
     function sub()
     {
         var obj = {};
         var cookie = document.cookie.split(";");
         for (x in cookie){
-            if(x>0)
+            if(x>0&&(cookie[x].split(":")[0].split(" ")[1].split("=")[0]!='csrftoken'))
             {
                 obj[cookie[x].split(":")[0].split(" ")[1].split("=")[0]] = cookie[x].split("=")[1];
                 console.log(cookie[x].split("=")[1].split(";")[1]);
+
             }
 
         }
         document.getElementById("inpans").value = JSON.stringify(obj);
         console.log("\n\n" + JSON.stringify(obj));
-        deleteAllCookies();
+        // deleteAllCookies();
 
         return true;
     }

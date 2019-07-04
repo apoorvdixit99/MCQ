@@ -10,4 +10,21 @@
 <hr>
 <p><a href="/questions/1/">Click here to begin the Game 1</a></p>
 <hr>
+
+<script>
+    function deleteAllCookies()
+    {
+        var d = new Date();
+        d.setTime(d.getTime()-15*60*1000);
+        document.cookie.split(";").forEach(function(c)
+        {
+            console.log(c);
+            if(c.split("=")[0] !== "csrftoken")
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + d.toGMTString() + ";path=/");
+            else
+                console.log("CSRF token cookie not deleted!");
+        });
+    }
+    deleteAllCookies();
+</script>
 {% endblock %}

@@ -9,15 +9,15 @@ from config import *
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-
 cred = credentials.Certificate('./firekey.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 total_questions_mcq = totalQuestions
 total_questions_db = Question.objects.count()
+
+
 # Create your views here.
-question = []
 
 
 def home_view(request, *args, **kwargs):
@@ -25,16 +25,13 @@ def home_view(request, *args, **kwargs):
 
 
 def loggedin_view(request, *args, **kwargs):
-    global question
-    if len(question) == 0:
-        question.append(total_questions_mcq)
-        for i in range(1, total_questions_mcq + 1, 1):
-            question.append(random.randrange(205, total_questions_db + 1, 1))
-    print(len(question))
-    request.session['questions'] = question
+    request.session['questions'] = []
+    request.session['questions'].clear()
+    request.session['questions'].append(total_questions_mcq)
+    for i in range(1, total_questions_mcq + 1, 1):
+        request.session['questions'].append(random.randrange(1, total_questions_db + 1, 1))
     request.session['score'] = 0
-
-    return render(request, "loggedin.html", {'first': question[1]})
+    return render(request, "loggedin.html", {'first': request.session['questions'][1]})
 
 
 def questions_view(request, index=-1):  # if random function is used in url it always return 2
@@ -43,6 +40,7 @@ def questions_view(request, index=-1):  # if random function is used in url it a
         index = random.randrange(1, total_questions_db + 1, 1)
     obj = Question.objects.get(id=request.session['questions'][index])
     context = {
+
         'event': eventName,
         'object': obj,
         'total_questions_mcq': total_questions_mcq,
@@ -56,7 +54,6 @@ def questions_view(request, index=-1):  # if random function is used in url it a
 
 def loggedout_view(request, *args, **kwargs):
     return render(request, "loggedout.html", {})
-
 
 
 def register_view(request):

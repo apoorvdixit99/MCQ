@@ -4,13 +4,13 @@
 eventName = 'Cerebro'
 
 # Total Question to be displayed
-totalQuestions = 1
+totalQuestions = 5
 
 # Correct Marks
 marksCorrect = 4
 
 # Incorrect Marks
-marksIncorrect = 0
+marksIncorrect = 1
 
 
 
