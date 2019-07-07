@@ -78,7 +78,7 @@ def register_view(request):
             if f == 1:
                 print("Firestore Successful")
                 # user = form.save()
-                user = User.objects.create_user(name, email, pwd)
+                user = User.objects.create_user(first_name=name, username=email, password=pwd)
                 user.save()
                 login(request, user)
                 messages.info(request, f"You are now logged in as: {name}")
