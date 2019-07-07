@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'pages',
     'questions',
+    'Scores',
 
 ]
 
@@ -87,7 +88,7 @@ DATABASES = {
         'NAME': 'mcq_pasc',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
