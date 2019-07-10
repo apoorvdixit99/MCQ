@@ -80,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_submit/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-400">
+            <state>
               <caret column="1" selection-start-column="1" selection-end-column="1" />
             </state>
           </provider>
@@ -135,6 +135,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,14 +152,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/django_user/virtual-env-blueprint" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -227,17 +227,17 @@
       <workItem from="1562611069486" duration="448000" />
       <workItem from="1562694420960" duration="1651000" />
       <workItem from="1562696918320" duration="813000" />
+      <workItem from="1562756335952" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9702000" />
+    <option name="totallyTimeSpent" value="9729000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16164994" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1638796" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -251,7 +251,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32996634" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.3292517" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49865952" visible="true" weight="0.2006689" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49865952" visible="true" weight="0.2006689" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32996634" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32996634" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -346,7 +346,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_submit/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-400">
+        <state>
           <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
