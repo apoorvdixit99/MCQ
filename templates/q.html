@@ -1,0 +1,472 @@
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Arimo:700' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href='css/timer.css' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"/>
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="timer.js"></script>
+
+    <title></title>
+  </head>
+  <body>
+    <!-- Navbar for submitting the test-->
+    <nav class="navbar navbar-dark bg-dark  justify-content fixed-top" id="mainNav"  >
+      <a href="#">
+        
+      </a>
+   
+      <div class="timer bg-dark">
+  <div class="timer--clock">
+    <div class="minutes-group clock-display-grp">
+      <div class="first number-grp">
+        <div class="number-grp-wrp">
+          <div class="num num-0">
+            <p>0</p>
+          </div>
+          <div class="num num-1">
+            <p>1</p>
+          </div>
+          <div class="num num-2">
+            <p>2</p>
+          </div>
+          <div class="num num-3">
+            <p>3</p>
+          </div>
+          <div class="num num-4">
+            <p>4</p>
+          </div>
+          <div class="num num-5">
+            <p>5</p>
+          </div>
+          <div class="num num-6">
+            <p>6</p>
+          </div>
+          <div class="num num-7">
+            <p>7</p>
+          </div>
+          <div class="num num-8">
+            <p>8</p>
+          </div>
+          <div class="num num-9">
+            <p>9</p>
+          </div>
+        </div>
+      </div>
+      <div class="second number-grp">
+        <div class="number-grp-wrp">
+          <div class="num num-0">
+            <p>0</p>
+          </div>
+          <div class="num num-1">
+            <p>1</p>
+          </div>
+          <div class="num num-2">
+            <p>2</p>
+          </div>
+          <div class="num num-3">
+            <p>3</p>
+          </div>
+          <div class="num num-4">
+            <p>4</p>
+          </div>
+          <div class="num num-5">
+            <p>5</p>
+          </div>
+          <div class="num num-6">
+            <p>6</p>
+          </div>
+          <div class="num num-7">
+            <p>7</p>
+          </div>
+          <div class="num num-8">
+            <p>8</p>
+          </div>
+          <div class="num num-9">
+            <p>9</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clock-separator">
+      <p>:</p>
+    </div>
+    <div class="seconds-group clock-display-grp">
+      <div class="first number-grp">
+        <div class="number-grp-wrp">
+          <div class="num num-0">
+            <p>0</p>
+          </div>
+          <div class="num num-1">
+            <p>1</p>
+          </div>
+          <div class="num num-2">
+            <p>2</p>
+          </div>
+          <div class="num num-3">
+            <p>3</p>
+          </div>
+          <div class="num num-4">
+            <p>4</p>
+          </div>
+          <div class="num num-5">
+            <p>5</p>
+          </div>
+          <div class="num num-6">
+            <p>6</p>
+          </div>
+          <div class="num num-7">
+            <p>7</p>
+          </div>
+          <div class="num num-8">
+            <p>8</p>
+          </div>
+          <div class="num num-9">
+            <p>9</p>
+          </div>
+        </div>
+      </div>
+      <div class="second number-grp">
+        <div class="number-grp-wrp">
+          <div class="num num-0">
+            <p>0</p>
+          </div>
+          <div class="num num-1">
+            <p>1</p>
+          </div>
+          <div class="num num-2">
+            <p>2</p>
+          </div>
+          <div class="num num-3">
+            <p>3</p>
+          </div>
+          <div class="num num-4">
+            <p>4</p>
+          </div>
+          <div class="num num-5">
+            <p>5</p>
+          </div>
+          <div class="num num-6">
+            <p>6</p>
+          </div>
+          <div class="num num-7">
+            <p>7</p>
+          </div>
+          <div class="num num-8">
+            <p>8</p>
+          </div>
+          <div class="num num-9">
+            <p>9</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="reload">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 65 65" enable-background="new 0 0 65 65" xml:space="preserve">
+      <path fill="#2b2b2b" d="M60.2,2.5c-2.3-0.2-4.4,1.5-4.6,3.9l-0.2,2.3c-6-5.6-13.8-8.7-22-8.7C15.5,0,0.9,14.5,0.9,32.4c0,17.9,14.5,32.4,32.4,32.4
+         c12.3,0,23.5-6.9,29-17.9c1.1-2.1,0.2-4.7-1.9-5.7c-2.1-1.1-4.7-0.2-5.7,1.9c-4.1,8.1-12.3,13.2-21.4,13.2
+         c-13.2,0-23.9-10.7-23.9-23.9c0-13.2,10.7-23.9,23.9-23.9c6.1,0,11.9,2.3,16.4,6.5l-3.4-0.3c-2.3-0.2-4.4,1.5-4.6,3.9
+         c-0.2,2.3,1.5,4.4,3.9,4.6l12.7,1.1c0.1,0,0.3,0,0.4,0c1,0,2-0.3,2.7-1c0.9-0.7,1.4-1.8,1.5-2.9l1.2-13.4
+         C64.3,4.7,62.5,2.7,60.2,2.5z"/>
+    </svg>
+</div>
+
+      <div class="container container-main center">
+        <h3 class="display-10">Test Name</h3>
+      </div>
+      
+    </nav>
+    <!--Navbar ends here-->
+
+    <div class="container-fluid ">
+      <div class="row full-width-row">
+
+
+        <div class=" col-lg-9 " >
+          <div class="col-lg-8">
+           <div class="row question box1 full-width-row rounded ">
+            <p class="lead ">Question No goes here</p>
+          </div>
+          <div class=" row full-width-row description box2 rounded">
+           <!--  <button type="button" class="btn "> <i class="fa fa-expand"></i></button> -->
+
+           <h5  class="ques">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            q
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
+        </div>
+      </div>
+<div class="col-lg-4" >
+        <div class="row main rounded text-center box1"><p class="lead">Options</p></div>
+        <div class="row op op1 rounded">
+          <div class="left">
+          <div class='c1'>
+            <div class='c2' id="a"><p class="option" id="pa">A</p></div>
+            <span class='short'></span>
+            <span class='long'></span>
+          </div></div>
+        OPTIONS 1</div>
+
+        <div class="row op op1 rounded">
+          <div class="left">
+          <div class='c1'>
+            <div class='c2' id="b"><p class="option" id="pb" >B</p></div>
+            <span class='short'></span>
+            <span class='long'></span>
+          </div></div>
+
+        OPTIONS 2</div>
+        <div class="row op op1 rounded">
+          <div class="left">
+        <div class='c1'>
+            <div class='c2' id="c"><p class="option" id="pc">C</p></div>
+            <span class='short'></span>
+            <span class='long'></span>
+          </div></div>
+OPTIONS 3</div>
+        <div class="row op op1 rounded">
+          <div class="left">
+        <div class='c1'>
+            <div class='c2' id="d"><p class="option" id="pd" >D</p></div>
+            <span class='short'></span>
+            <span class='long'></span>
+          </div></div>
+OPTIONS 4</div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="row main rounded text-center box1"><p class="lead">Question List</p></div>
+      <span class="overflow-none">
+      <div class=" display-5 list" style="margin-top: 0">
+
+       <!-- <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Grid View
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        List  View
+      </button> -->
+
+       
+    </div>
+    <div class="container overflow-none" >
+      <div >
+        <div class="row size">
+
+         <a class="roundbutton book" href="#"><span class="wrapper">1</span></a>
+         <a class="roundbutton book" href="#"><span class="wrapper">2</span></a>
+         <a class="roundbutton book" href="#"><span class="wrapper">3</span></a>
+         <a class="roundbutton book" href="#"><span class="wrapper">4</span></a>
+         <a class="roundbutton book" href="#"><span class="wrapper">5</span></a>
+       </div> 
+       <div class="row size">
+         <a class="roundbutton" href="#"><span class="wrapper">6</span></a>
+         <a class="roundbutton" href="#"><!-- <span><i class="fa fa-bookmark" id="one"></i></span> --><span class="wrapper">7</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">8</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">9</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">10</span></a>
+       </div> 
+       <div class="row size">  
+         <a class="roundbutton" href="#"><span class="wrapper">11</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">12</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">13</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">14</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">15</span></a>
+       </div> 
+       <div class="row size">
+         <a class="roundbutton" href="#"><span class="wrapper">16</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">17</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">18</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">19</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">20</span></a>
+       </div> 
+       <div class="row size">
+         <a class="roundbutton" href="#"><span class="wrapper">21</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">22</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">23</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">24</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">25</span></a>
+
+       </div> 
+
+       <div class="row size">
+         <a class="roundbutton" href="#"><span class="wrapper">26</span><i class="fa fa-bookmark" id="one"></i></span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">27</span><i class="fa fa-bookmark" id="one"></i></span></a>
+         <a class="roundbutton" href="#"><span class="wrapper" >28</span><i class="fa fa-bookmark" id="one"></i></span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">29</span><i class="fa fa-bookmark" id="one"></i></span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">30</span><i class="fa fa-bookmark" id="one"></i></span></a>
+       </div> 
+       <div class="row size">
+
+         <a class="roundbutton" href="#"><span class="wrapper">31</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">32</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper" >33</span><span><i class="fa fa-bookmark" id="one"></i></span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">34</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">35</span></a>
+       </div> 
+       <div class="row size">
+         <a class="roundbutton" href="#"><span class="wrapper">36</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">37</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">38</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">39</span></a>
+         <a class="roundbutton" href="#"><span class="wrapper">40</span></a>
+       </div> 
+       <div class="row size">
+        <a class="roundbutton" href="#"><span class="wrapper on-hover">41</span></a>
+        <a class="roundbutton" href="#"><span class="wrapper">42</span></a>
+        <a class="roundbutton" href="#"><span class="wrapper">43</span></a>
+        <a class="roundbutton" href="#"><span class="wrapper">44</span></a>
+        <a class="roundbutton" href="#"><span class="wrapper">45</span></a>
+      </div> 
+      <div class="row size">      
+       <a class="roundbutton" href="#"><span class="wrapper">46</span></a>
+       <a class="roundbutton" href="#"><span class="wrapper">47</span></a>
+       <a class="roundbutton" href="#"><span class="wrapper">48</span></a>
+       <a class="roundbutton" href="#"><span class="wrapper">49</span></a>
+       <a class="roundbutton" href="#"><span class="wrapper">50</span></a>
+     </div> 
+
+
+
+   </div>
+ </div>
+</div>
+
+
+<!-- Bottom Navbar-->
+<nav class="navbar  navbar fixed-bottom navbar1" >
+  <form class="form-inline">
+    <button type="button" class="btn btn-outline-warning btn2"><i class=" fa fa-arrow-left"></i>&nbsp&nbsp Previous Question</button>
+    <button type="button" class="btn btn-outline-primary btn2"> <i class=" fa fa-bookmark"></i>&nbsp&nbspBookmark</button>
+
+
+    <button type="button" class="btn btn-outline-danger btn2 "> <i class="fa fa-reply"></i>&nbsp&nbspReport</button>
+   <!--  <button type="button" class="btn btn-outline-info btn2"><i class=" fa fa-eraser"></i>&nbsp&nbspClear Response</button> -->
+   <button data-toggle="collapse" type="button" class="btn btn-outline-primary btn2 btns">Submit
+        </button>
+    <button type="button" class="btn  hide-on-small-only btn-outline-success btns btn2 " style="
+    right: 100px;"
+><span class="hide-on-small-only">&nbsp&nbspSave & Next </span> <i class=" fa fa-arrow-right"></i></button>
+  </form>
+
+</nav> 
+
+<!--Bottom navbar-->
+
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+<script>
+    
+
+  $('.op1').click(function(){
+    //console.log("ok");
+    $(this).find('.left').find('.c2').click();
+  });
+  
+
+  $('.c2').click(function () {
+    if($(this).hasClass('clicked')){
+      $(this).removeClass('clicked');
+      $(this).find('p').removeClass('hide');
+      $(this).parent().parent().parent().removeClass('glow');
+    }
+    else
+    {
+      $(this).addClass('clicked');
+      $(this).parent().parent().parent().addClass('glow');
+      $(this).find('p').addClass('hide');
+    //$("#pa").addClass('hide');
+
+
+    
+    if($(this).attr("id")!="a"){
+      $("#a").removeClass('clicked');
+      $("#a > p").removeClass('hide');
+      $("#a").parent().parent().parent().removeClass('glow');
+    }
+    if($(this).attr("id")!='b'){
+      $('#b').removeClass('clicked');
+     $("#b > p").removeClass("hide");
+     $("#b").parent().parent().parent().removeClass('glow');
+   }
+    if($(this).attr("id")!='c'){
+      $('#c').removeClass('clicked');
+     $("#c > p").removeClass("hide");
+     $("#c").parent().parent().parent().removeClass('glow');
+   }
+    if($(this).attr("id")!='d'){
+      $('#d').removeClass('clicked');
+     $("#d > p").removeClass("hide");
+     $("#d").parent().parent().parent().removeClass('glow');
+   }
+  }
+
+});
+
+
+  $(function()
+  {
+    $('on-hover').hover(function()
+    {
+      $('on-hover').attr('i','fa fa-bookmark');
+    }
+    )
+  })
+
+
+
+
+
+    // body...
+  
+// $('.op').on('click', function(e){
+//       e.preventDefault();
+//       $(this).hide();
+//     });
+   
+</script>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

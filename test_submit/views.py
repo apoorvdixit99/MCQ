@@ -36,7 +36,11 @@ def submit_data(request):
         score = request.session['score']
         Scores.objects.create(username=request.user.username, event=eventName, score=score)
         logout(request)
-        return HttpResponse("Your Score is " + str(score))
+        context = {
+            'score': score
+        }
+
+        return render(request,"loggedout.html", context)
     else:
         return redirect("/")
 
